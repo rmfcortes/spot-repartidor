@@ -1,0 +1,62 @@
+export interface Pedido {
+    aceptado: boolean;
+    cliente: Cliente;
+    id: string;
+    productos: Producto[];
+    repartidor: Repartidor;
+    total: number;
+    unRead?: number;
+}
+
+export interface Cliente {
+    direccion: Direccion;
+    nombre: string;
+    telefono?: string;
+    uid: string;
+}
+
+export interface Direccion {
+    direccion: string;
+    lat: number;
+    lng: number;
+}
+
+export interface Producto{
+    cantidad: number;
+    codigo?: string;
+    complementos: Complemento[];
+    descripcion: string;
+    id: string;
+    nombre: string;
+    observaciones: string;
+    pasillo: string;
+    precio: number;
+    total: number;
+    unidad?: string;
+    url: string;
+    variables: boolean;
+}
+
+export interface Complemento {
+    nombre: string;
+    precio: number;
+}
+
+export interface Repartidor {
+    foto: string;
+    id: string;
+    nombre: string;
+    telefono: string;
+}
+
+export interface Notificacion {
+    idPedido: string;                                
+    negocio: string;                              
+    negocio_direccion: string;                         
+    negocio_lat: string;                               
+    negocio_lng: string;                               
+    cliente: string;         
+    cliente_direccion: string;                       
+    cliente_lat: string;                             
+    cliente_lng: string;                             
+}

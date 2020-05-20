@@ -1,0 +1,59 @@
+<ion-header *ngIf="fcmPermission && gpsPermission && gpsActivated">
+    <ion-toolbar color="primary">
+        <ion-title>
+            {{nombre | titlecase}}
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [ngClass]="{'bg' : !fcmPermission && !gpsPermission && !gpsActivated}">
+    <ng-container *ngIf="!fcmPermission || !gpsPermission || !gpsActivated; else permissionTemplate">
+        <ion-img src="../../../assets/img/fondo_permisos.jpg" style="margin-top: 1.5rem;"></ion-img>
+        <ion-item lines="none" style="text-align: center;">
+            <ion-label color="light" class="ion-text-wrap" style="font-size: 10pt;">
+                Para sacar el máximo provecho y darte el mejor servicio, por favor otorga los siguientes permisos
+            </ion-label>
+        </ion-item>
+        <div class="foot">
+            <ion-button *ngIf="!fcmPermission" (click)="activaFCM()" expand="block" shape="round" class="boton-margen" style="--color: var(--ion-color-primary); --background: white">
+                Activar notificaciones
+            </ion-button>
+            <ion-button *ngIf="!gpsPermission" (click)="activaFCM()" expand="block" shape="round" class="boton-margen" style="--color: var(--ion-color-primary); --background: white">
+                Activar notificaciones
+            </ion-button>
+            <ion-button *ngIf="!gpsActivated" (click)="activaFCM()" expand="block" shape="round" class="boton-margen" style="--color: var(--ion-color-primary); --background: white">
+                Activar notificaciones
+            </ion-button>
+        </div>
+    </ng-container>
+    <ng-template #permissionTemplate>
+        <ion-list>
+            <ion-card *ngFor="let item of pedidos">
+                <ion-list-header>
+                    <ion-label color="primary">{{item.cliente.nombre}}</ion-label>
+                </ion-list-header>
+                <ion-item lines="none" detail (click)="verPedido(item)">
+                    <ion-label class="ion-text-wrap" color="medium">{{item.cliente.direccion.direccion}}</ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-button slot="start" (click)="verMapa(item.cliente)" fill="clear">
+                        Ver mapa
+                    </ion-button>
+                    <ng-container *ngIf="item.unRead > 0; else chatTemplate">
+                        <ion-button slot="end" (click)="verChat(item.cliente.uid, item.id, item.cliente.nombre)">
+                            Chat {{item.unRead}}
+                        </ion-button>
+                    </ng-container>
+                    <ng-template #chatTemplate>
+                        <ion-button slot="end" (click)="verChat(item.cliente.uid, item.id, item.cliente.nombre)" fill="outline">
+                            Chat
+                        </ion-button>
+                    </ng-template>
+                    <ion-button *ngIf="item.cliente.telefono" slot="end" (click)="llamar(item.cliente.telefono)" fill="outline">
+                        Llamar
+                    </ion-button>
+                </ion-item>
+            </ion-card>
+        </ion-list>
+    </ng-template>
+</ion-content>

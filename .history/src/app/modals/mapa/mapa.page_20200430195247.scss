@@ -1,0 +1,14 @@
+ion-app._gmaps_cdv_ .nav-decor {
+    background-color: transparent !important;
+}
+
+#map_canvas {
+    height: 100%;
+}
+
+.arrow {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+}

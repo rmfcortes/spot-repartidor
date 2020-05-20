@@ -1,0 +1,12 @@
+<ion-content>
+    <div class="arrow">
+        <ion-button (click)="regresar()" fill="clear">
+            <ion-icon slot="start" name="close"></ion-icon>
+        </ion-button>
+    </div>
+    <!-- <agm-map style="height: 100%" [latitude]="cliente.direccion.lat" [longitude]="cliente.direccion.lng" [disableDefaultUI]="true" [streetViewControl]="false" maxZoom="17" [zoomControl]="false" [fitBounds]="true">
+        <agm-marker [agmFitBounds]="true" [iconUrl]='{"url": pinCasa,"scaledSize": {"height": 75, "width": 50}}' [latitude]="cliente.direccion.lat" [longitude]="cliente.direccion.lng" [animation]="'DROP'"></agm-marker>
+        <agm-marker [agmFitBounds]="true" [iconUrl]='{"url": pinRepartidor,"scaledSize": {"height": 50, "width": 50}}' [latitude]="ubicacion.lat" [longitude]="ubicacion.lng" [animation]="'DROP'"></agm-marker>
+    </agm-map> -->
+    <div id="map_canvas"></div>
+</ion-content>
